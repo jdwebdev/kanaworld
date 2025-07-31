@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 
-const testRoutes = require("./routes/test");
+const testRoutes = require("../routes/test");
 
 //Pour créer une application express
 const app = express();
