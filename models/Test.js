@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const uniqueValidator = require("mongoose-unique-validator");
+// const uniqueValidator = require("mongoose-unique-validator");
 
 const testSchema = mongoose.Schema({
     name: { type: String, required: true, unique: true },
@@ -10,6 +10,6 @@ const testSchema = mongoose.Schema({
 });
 
 //On rajoute le validateur comme plugin à notre schéma
-testSchema.plugin(uniqueValidator);
+// testSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model("test", testSchema);

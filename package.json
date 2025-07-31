@@ -1,5 +1,5 @@
 {
-	"name": "backend",
+	"name": "KanaWorldServer",
 	"version": "1.0.0",
 	"description": "",
 	"main": "server.js",
@@ -22,7 +22,6 @@
 		"jsonwebtoken": "^9.0.2",
 		"mongo-sanitize": "^1.1.0",
 		"mongoose": "^8.17.0",
-		"mongoose-unique-validator": "^4.0.1",
 		"multer": "^1.4.2",
 		"pm2": "^5.2.0"
 	}
