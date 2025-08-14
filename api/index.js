@@ -9,9 +9,7 @@ const testRoutes = require("../routes/test");
 const app = express();
 
 require("dotenv").config();
-mongoose.connect(process.env.DB_CONNECT,
-    { useNewUrlParser: true,
-    useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("Connexion à MongoDB réussie !"))
     .catch((e) => {
 		console.log(e);
@@ -83,10 +81,5 @@ server.on("listening", () => {
 });
 
 server.listen(port);
-
-
-
-
-
 
 module.exports = app;
