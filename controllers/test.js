@@ -205,53 +205,49 @@ exports.login = (req, res, next) => {
     const reqBodyName = req.body.name;
     const reqBodyPassword = sanitize(req.body.password);
 
-	fs.readFile("./save.json", 'utf8', function (err, data) {
-		if (err) {
-			console.log("ERROR: save.json");
-		} else {
-			console.log("OK: save.json");
-		}
-	})
-	fs.readFile("./save2.json", 'utf8', function (err, data) {
-		if (err) {
-			console.log("ERROR: /save2.json");
-		} else {
-			console.log("OK: /save2.json");
-		}
-	})
-	fs.readFile("./save3.json", 'utf8', function (err, data) {
-		if (err) {
-			console.log("ERROR: ../save3.json");
-		} else {
-			console.log("OK: ../save3.json");
-		}
-	})
-
 	console.log("__dirname: " + __dirname);
 
-	fs.readFile(__dirname + "/save.json", 'utf8', function (err, data) {
+	// fs.readFile("./save.json", 'utf8', function (err, data) {
+	// 	if (err) {
+	// 		console.log("ERROR: save.json");
+	// 	} else {
+	// 		console.log("OK: save.json");
+	// 	}
+	// })
+	// fs.readFile("./save2.json", 'utf8', function (err, data) {
+	// 	if (err) {
+	// 		console.log("ERROR: /save2.json");
+	// 	} else {
+	// 		console.log("OK: /save2.json");
+	// 	}
+	// })
+	// fs.readFile("/save3.json", 'utf8', function (err, data) {
+	// 	if (err) {
+	// 		console.log("ERROR: /save3.json");
+	// 	} else {
+	// 		console.log("OK: /save3.json");
+	// 	}
+	// })
+
+	
+
+	fs.readFile(__dirname + "/save3.json", 'utf8', function (err, data) {
 		if (err) {
-			console.log("ERROR: __dirname/save.json");
+			console.log("ERROR: __dirname/save3.json");
 		} else {
-			console.log("OK: __dirname/save.json");
+			console.log("OK: __dirname/save3.json");
 		}
 	})
 
-	fs.readFile(__dirname + "save.json", 'utf8', function (err, data) {
-		if (err) {
-			console.log("ERROR: __dirname save.json");
-		} else {
-			console.log("OK: __dirname save.json");
-		}
-	})
 
 
-
-	fs.readFile(__dirname + "../save.json", 'utf8', function (err, data) {
+	fs.readFile(__dirname + "/save3.json", 'utf8', function (err, data) {
 	
 		if (err) {
-			console.log("error: " + "__dirname ../save.json");
-			return res.status(200).json({ error: err });
+			console.log("error: " + "__dirname/save3.json");
+			return res.status(400).json({ error: err });
+		} else {
+			return res.status(200).json({ msg: "OKKK" });
 		}
 
 		console.log(data);
