@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sanitize = require("mongo-sanitize");
 const fs = require("fs");
+const pathToSaveJson = __dirname + "/save.json";
 
 /* 
 	username:JaDona;;;
@@ -106,7 +107,7 @@ exports.signup = (req, res, next) => {
     if (bNameOk && bPassOk) {
 			
 		
-		fs.readFile("./save.json", 'utf8', function (err, data) {
+		fs.readFile(pathToSaveJson, 'utf8', function (err, data) {
 			let users = JSON.parse(data);
 			let bFound = false;
 			users.forEach((u, i) => {
@@ -129,7 +130,7 @@ exports.signup = (req, res, next) => {
 
 						let newData = JSON.stringify(users);
 
-						fs.writeFile("./save.json", newData, (err) => {
+						fs.writeFile(pathToSaveJson, newData, (err) => {
 							if (err) {
 								res.status(400).json({ message: "WRITE FILE ERROR"})
 							} else {
@@ -205,52 +206,12 @@ exports.login = (req, res, next) => {
     const reqBodyName = req.body.name;
     const reqBodyPassword = sanitize(req.body.password);
 
-	console.log("__dirname: " + __dirname);
-
-	// fs.readFile("./save.json", 'utf8', function (err, data) {
-	// 	if (err) {
-	// 		console.log("ERROR: save.json");
-	// 	} else {
-	// 		console.log("OK: save.json");
-	// 	}
-	// })
-	// fs.readFile("./save2.json", 'utf8', function (err, data) {
-	// 	if (err) {
-	// 		console.log("ERROR: /save2.json");
-	// 	} else {
-	// 		console.log("OK: /save2.json");
-	// 	}
-	// })
-	// fs.readFile("/save3.json", 'utf8', function (err, data) {
-	// 	if (err) {
-	// 		console.log("ERROR: /save3.json");
-	// 	} else {
-	// 		console.log("OK: /save3.json");
-	// 	}
-	// })
-
-	
-
-	fs.readFile(__dirname + "/save3.json", 'utf8', function (err, data) {
-		if (err) {
-			console.log("ERROR: __dirname/save3.json");
-		} else {
-			console.log("OK: __dirname/save3.json");
-		}
-	})
-
-
-
-	fs.readFile(__dirname + "/save3.json", 'utf8', function (err, data) {
+	fs.readFile(pathToSaveJson, 'utf8', function (err, data) {
 	
 		if (err) {
-			console.log("error: " + "__dirname/save3.json");
 			return res.status(400).json({ error: err });
-		} else {
-			return res.status(200).json({ msg: "OKKK" });
 		}
 
-		console.log(data);
 		let users = JSON.parse(data);
 
 		let bFound = false;
@@ -325,7 +286,7 @@ exports.save = (req, res, _) => {
     user = { ...body };
 	let saveData = "";
 
-	fs.readFile("./save.json", 'utf8', function (err, data) {
+	fs.readFile(pathToSaveJson, 'utf8', function (err, data) {
 		let users = JSON.parse(data);
 		
 		users.forEach((u, i) => {
@@ -336,7 +297,7 @@ exports.save = (req, res, _) => {
 		});
 		if (bFound) {
 			let usersJson = JSON.stringify(users);
-			fs.writeFile("./save.json", usersJson, (err) => {
+			fs.writeFile(pathToSaveJson, usersJson, (err) => {
 				if (err) {
 					res.status(400).json({ message: "WRITE FILE ERROR"})
 				} else {
