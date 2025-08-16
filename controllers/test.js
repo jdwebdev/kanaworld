@@ -299,6 +299,8 @@ exports.save = (req, res, _) => {
 			let usersJson = JSON.stringify(users);
 			fs.writeFile(pathToSaveJson, usersJson, (err) => {
 				if (err) {
+					console.log("WRITE FILE ERROR ?");
+					console.log(err);
 					res.status(400).json({ message: "WRITE FILE ERROR"})
 				} else {
 					res.status(200).json({ message: "OK"})
