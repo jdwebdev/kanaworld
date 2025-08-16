@@ -205,8 +205,45 @@ exports.login = (req, res, next) => {
     const reqBodyName = req.body.name;
     const reqBodyPassword = sanitize(req.body.password);
 
+	fs.readFile("save.json", 'utf8', function (err, data) {
+		if (err) {
+			console.log("ERROR: save.json");
+		} else {
+			console.log("OK: save.json");
+		}
+	})
+	fs.readFile("/save.json", 'utf8', function (err, data) {
+		if (err) {
+			console.log("ERROR: /save.json");
+		} else {
+			console.log("OK: /save.json");
+		}
+	})
+	fs.readFile("../save.json", 'utf8', function (err, data) {
+		if (err) {
+			console.log("ERROR: ../save.json");
+		} else {
+			console.log("OK: ../save.json");
+		}
+	})
 	fs.readFile("./save.json", 'utf8', function (err, data) {
+		if (err) {
+			console.log("ERROR: ./save.json");
+		} else {
+			console.log("OK: ./save.json");
+		}
+	})
 
+
+
+	fs.readFile("./controllers/save.json", 'utf8', function (err, data) {
+	
+		if (err) {
+			console.log("error: " + "./controllers/save.json");
+			return res.status(200).json({ error: err });
+		}
+
+		console.log(data);
 		let users = JSON.parse(data);
 
 		let bFound = false;
