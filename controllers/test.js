@@ -205,41 +205,52 @@ exports.login = (req, res, next) => {
     const reqBodyName = req.body.name;
     const reqBodyPassword = sanitize(req.body.password);
 
-	fs.readFile("save.json", 'utf8', function (err, data) {
+	fs.readFile("./save.json", 'utf8', function (err, data) {
 		if (err) {
 			console.log("ERROR: save.json");
 		} else {
 			console.log("OK: save.json");
 		}
 	})
-	fs.readFile("/save.json", 'utf8', function (err, data) {
+	fs.readFile("./save2.json", 'utf8', function (err, data) {
 		if (err) {
-			console.log("ERROR: /save.json");
+			console.log("ERROR: /save2.json");
 		} else {
-			console.log("OK: /save.json");
+			console.log("OK: /save2.json");
 		}
 	})
-	fs.readFile("../save.json", 'utf8', function (err, data) {
+	fs.readFile("./save3.json", 'utf8', function (err, data) {
 		if (err) {
-			console.log("ERROR: ../save.json");
+			console.log("ERROR: ../save3.json");
 		} else {
-			console.log("OK: ../save.json");
+			console.log("OK: ../save3.json");
 		}
 	})
-	fs.readFile("./save.json", 'utf8', function (err, data) {
+
+	console.log("__dirname: " + __dirname);
+
+	fs.readFile(__dirname + "/save.json", 'utf8', function (err, data) {
 		if (err) {
-			console.log("ERROR: ./save.json");
+			console.log("ERROR: __dirname/save.json");
 		} else {
-			console.log("OK: ./save.json");
+			console.log("OK: __dirname/save.json");
+		}
+	})
+
+	fs.readFile(__dirname + "save.json", 'utf8', function (err, data) {
+		if (err) {
+			console.log("ERROR: __dirname save.json");
+		} else {
+			console.log("OK: __dirname save.json");
 		}
 	})
 
 
 
-	fs.readFile("./controllers/save.json", 'utf8', function (err, data) {
+	fs.readFile(__dirname + "../save.json", 'utf8', function (err, data) {
 	
 		if (err) {
-			console.log("error: " + "./controllers/save.json");
+			console.log("error: " + "__dirname ../save.json");
 			return res.status(200).json({ error: err });
 		}
 
