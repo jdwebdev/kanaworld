@@ -188,10 +188,13 @@ app.put("/test/save", auth, async (req, res) => {
     let user = { ...body };
 
 	try {
+		let today = new Date();
+		today += "";
+		today = today.split("(")[0];
 
 		const { data, error } = await supabase
 		.from('USER')
-		.update({ saveData: user.saveData })
+		.update({ saveData: user.saveData, lastConnection: today })
 		.eq("id", req.body.id)
 		.select()
 
